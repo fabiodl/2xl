@@ -1,0 +1,341 @@
+<html>
+  <head>
+    <style>
+    /* Container needed to position the button. Adjust the width as needed */
+    .container {
+	position: relative;
+	width: 554px;
+	height: 700px;
+    }
+
+    /* Make the image responsive */
+    .container img {
+	height: 700px;
+    }
+    .container .play-btn {
+	position: absolute;
+	top: 40%;
+	left: 60%;
+    }
+    .container .rewind-btn {
+	position: absolute;
+	top: 40%;
+	left: 52%;
+    }
+    .container .pause-btn {
+	position: absolute;
+	top: 40%;
+	left: 37%;
+    }
+    .container #sound-0 {
+	position: absolute;
+	top: 83.25%;
+	left: 36%;
+    }
+    .container #sound-1 {
+	position: absolute;
+	top: 83.25%;
+	left: 45%;
+    }
+    .container #sound-2 {
+	position: absolute;
+	top: 83.25%;
+	left: 55%;
+    }
+    .container #sound-3 {
+	position: absolute;
+	top: 83.25%;
+	left: 64%;
+    }
+    .container #eye-left {
+	position: absolute;
+	top: 8.5%;
+	left: 22.75%;
+    }
+    .container #eye-right {
+	position: absolute;
+	top: 8.5%;
+	left: 44.25%;
+    }
+
+    .container #mouthfast {
+	position: absolute;
+	left: 49.40%;
+	top: 32.5%;
+
+    }
+
+    .container #mouthslow {
+	position: absolute;
+	left: 49.40%;
+	top: 32.5%;
+    }
+
+    
+    .btn {
+      background-color: transparent;
+      background-repeat: no-repeat;
+      border: none;
+      overflow: hidden;
+      outline: none;
+      cursor: pointer;
+    }
+    .played-btn {
+      border: solid rgba(200,0,0,1);
+    }
+    .top-btn {
+      height: 4%;
+      width: 7%;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .answer-btn {
+      height: 5.5%;
+      width: 3.5%;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .hovered-button {
+      background-color: rgba(0,0,0,0.25);
+      border: solid rgba(200,0,0,1);
+    }
+
+    .blinking {
+        -webkit-animation: 1s blink ease infinite;
+        -moz-animation: 1s blink ease infinite;
+        -ms-animation: 1s blink ease infinite;
+        -o-animation: 1s blink ease infinite;
+        animation: 1s blink ease infinite;        
+    }
+
+    .blinkingmouthslow {
+        -webkit-animation: 0.5s blinkmouth ease infinite;
+        -moz-animation: 0.5s blinkmouth ease infinite;
+        -ms-animation: 0.5s blinkmouth ease infinite;
+        -o-animation: 0.5s blinkmouth ease infinite;
+        animation: 0.5s blinkmouth ease infinite;        
+    }
+
+    .blinkingmouthfast {
+        -webkit-animation: 0.17s blinkmouth ease infinite;
+        -moz-animation: 0.17s blinkmouth ease infinite;
+        -ms-animation: 0.17s blinkmouth ease infinite;
+        -o-animation: 0.17s blinkmouth ease infinite;
+        animation: 0.17s blinkmouth ease infinite;        
+    }
+
+
+    
+    @keyframes "blink" {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @-moz-keyframes blink {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes "blink" {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @-ms-keyframes "blink" {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @-o-keyframes "blink" {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+
+
+        @keyframes "blinkmouth" {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.3;
+        }
+    }
+
+    @-moz-keyframes blinkmouth {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.3;
+        }
+    }
+
+    @-webkit-keyframes "blinkmouth" {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.3;
+        }
+    }
+
+    @-ms-keyframes "blinkmouth" {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.3;
+        }
+    }
+
+    @-o-keyframes "blinkmouth" {
+        from, to {
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.3;
+        }
+    }
+    
+    </style>    
+  </head>
+  <body>
+    <div class="container">
+      <img src="https://m.media-amazon.com/images/I/71fkIVLYpVL._AC_UL1400_.jpg" />
+      <input type="button" onclick="playAll()" class="btn top-btn play-btn" />
+      <input type="button" onclick="rewind()" class="btn top-btn rewind-btn" />
+      <input type="button" onclick="pause()" class="btn top-btn pause-btn" />
+      <svg height="200" width="200" id="eye-left">
+	<circle cx="100" cy="100" r="23" fill="black" />
+      </svg>
+      <svg height="200" width="200" id="eye-right">
+	<circle cx="100" cy="100" r="23" fill="black" />
+      </svg>
+
+      <svg height="28" width="28" id="mouthslow" class="blinkingmouthslow" style="display:none">
+	<circle cx="14" cy="14" r="14" fill="red" />
+      </svg>
+      <svg height="28" width="28" id="mouthfast" class="blinkingmouthfast" style="display:none">
+	<circle cx="14" cy="14" r="10" fill="red" />
+      </svg>
+      
+      <div id="sounds">
+      </div>
+    </div>
+    <script type="text/javascript">
+      var sounds = [];
+      var soundLabels = ["1","2","3","4"];
+      var currentSound = 0;
+      var isPaused = true;
+      var currentTime = 0;
+
+      for (let i=0; i<4; i++) {
+	var snd  = new Audio();
+	var src  = document.createElement("source");
+	src.type = "audio/mpeg";
+	src.src  = `Track${i+1}.mp3`;
+	snd.appendChild(src);
+	sounds.push(snd);
+
+	var btn = document.createElement("input");
+	btn.innerHTML = soundLabels[i];
+	btn.type = "button";
+	btn.classList.add("btn");
+	btn.classList.add("answer-btn");
+	btn.onclick = function() {playOne(i)};
+	btn.id = `sound-${i}`
+	document.getElementById("sounds").appendChild(btn);
+      }
+
+      function playAll() {
+	isPaused = false;
+	play();
+      }
+
+      function playOne(soundIndex) {
+	currentSound = soundIndex;
+	play();
+      }
+
+      function play() {
+	currentTime = sounds[0].currentTime;
+
+	sounds.forEach((sound, i) => {
+	  if (i == currentSound) {
+	    sound.volume = 1.0;
+	  } else {
+	    sound.volume = 0.0;
+	  }
+	  sound.currentTime = currentTime;
+	  sound.play()
+	})
+
+	formatButton();
+      }
+
+      function formatButton() {
+	sounds.forEach((sound, i) => {
+	  sound.classList.remove("hovered-button");
+	  if (i == currentSound) {
+	    document.getElementById(`sound-${i}`).classList.add("played-btn");
+	  } else {
+	    document.getElementById(`sound-${i}`).classList.remove("played-btn");
+	  }
+	});
+	document.getElementById("eye-left").classList.add("blinking");
+	document.getElementById("eye-right").classList.add("blinking");
+        document.getElementById("mouthfast").style.display="block"
+        document.getElementById("mouthslow").style.display="block"
+      }
+
+      function pause() {
+	isPaused = true;
+	sounds.forEach((sound, i) => {
+	  sound.pause();
+	  sound.classList.remove("hovered-button");
+	});
+	document.getElementById("eye-left").classList.remove("blinking");
+	document.getElementById("eye-right").classList.remove("blinking");
+        document.getElementById("mouthfast").style.display="none"
+        document.getElementById("mouthslow").style.display="none"  
+      }
+
+      function rewind() {
+	currentTime = sounds[0].currentTime - 10;
+	sounds.forEach((sound, i) => {
+	  sound.currentTime = currentTime;
+	});
+      }
+
+      var buttons = document.getElementsByClassName('btn');
+      for (let i = 0; i < buttons.length; i++) {
+	buttons[i].onmouseover = function(e){
+	  this.classList.add("hovered-button");
+	}
+	buttons[i].onmouseout = function(e){
+	  this.classList.remove("hovered-button");
+	}
+      }
+    </script>
+  </body>
+</html>
